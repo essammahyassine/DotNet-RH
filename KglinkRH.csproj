@@ -1,0 +1,356 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F61B1DF4-D010-4A8D-AA29-4F56AE2F4018}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KglinkRH</RootNamespace>
+    <AssemblyName>KglinkRH</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=12.7.0.10, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar2, Version=12.7.0.10, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.Instrumentation, Version=12.7.0.10, Culture=neutral, PublicKeyToken=f90dc37c26666a67, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbsenceForm.cs" />
+    <Compile Include="AbsenceForm.Designer.cs">
+      <DependentUpon>AbsenceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Citation.cs" />
+    <Compile Include="Citation.Designer.cs">
+      <DependentUpon>Citation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Conge.cs" />
+    <Compile Include="Conge.Designer.cs">
+      <DependentUpon>Conge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DepartementForm.cs" />
+    <Compile Include="DepartementForm.Designer.cs">
+      <DependentUpon>DepartementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAcces.cs" />
+    <Compile Include="FormAcces.Designer.cs">
+      <DependentUpon>FormAcces.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAjoutsucces.cs" />
+    <Compile Include="FormAjoutsucces.Designer.cs">
+      <DependentUpon>FormAjoutsucces.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formattestation.cs" />
+    <Compile Include="Formattestation.Designer.cs">
+      <DependentUpon>Formattestation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormErreur.cs" />
+    <Compile Include="FormErreur.Designer.cs">
+      <DependentUpon>FormErreur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModification.cs" />
+    <Compile Include="FormModification.Designer.cs">
+      <DependentUpon>FormModification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formprintagent.cs" />
+    <Compile Include="Formprintagent.Designer.cs">
+      <DependentUpon>Formprintagent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSupression.cs" />
+    <Compile Include="FormSupression.Designer.cs">
+      <DependentUpon>FormSupression.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormVirement.cs" />
+    <Compile Include="FormVirement.Designer.cs">
+      <DependentUpon>FormVirement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionRHDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionRHDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="IdentificationForm.cs" />
+    <Compile Include="IdentificationForm.Designer.cs">
+      <DependentUpon>IdentificationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuForm.cs" />
+    <Compile Include="MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MForm.cs" />
+    <Compile Include="MForm.Designer.cs">
+      <DependentUpon>MForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonelForm.cs" />
+    <Compile Include="PersonelForm.Designer.cs">
+      <DependentUpon>PersonelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="ProjetForm.cs" />
+    <Compile Include="ProjetForm.Designer.cs">
+      <DependentUpon>ProjetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecrutementForm.cs" />
+    <Compile Include="RecrutementForm.Designer.cs">
+      <DependentUpon>RecrutementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Relation_SociauxForm.cs" />
+    <Compile Include="Relation_SociauxForm.Designer.cs">
+      <DependentUpon>Relation_SociauxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepertoireForm.cs" />
+    <Compile Include="RepertoireForm.Designer.cs">
+      <DependentUpon>RepertoireForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reunionForm.cs" />
+    <Compile Include="reunionForm.Designer.cs">
+      <DependentUpon>reunionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="showForm.cs" />
+    <Compile Include="showForm.Designer.cs">
+      <DependentUpon>showForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AbsenceForm.resx">
+      <DependentUpon>AbsenceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Citation.resx">
+      <DependentUpon>Citation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Conge.resx">
+      <DependentUpon>Conge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartementForm.resx">
+      <DependentUpon>DepartementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAcces.resx">
+      <DependentUpon>FormAcces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAjoutsucces.resx">
+      <DependentUpon>FormAjoutsucces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formattestation.resx">
+      <DependentUpon>Formattestation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormErreur.resx">
+      <DependentUpon>FormErreur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModification.resx">
+      <DependentUpon>FormModification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formprintagent.resx">
+      <DependentUpon>Formprintagent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSupression.resx">
+      <DependentUpon>FormSupression.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormVirement.resx">
+      <DependentUpon>FormVirement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IdentificationForm.resx">
+      <DependentUpon>IdentificationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuForm.resx">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MForm.resx">
+      <DependentUpon>MForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonelForm.resx">
+      <DependentUpon>PersonelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjetForm.resx">
+      <DependentUpon>ProjetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="RecrutementForm.resx">
+      <DependentUpon>RecrutementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Relation_SociauxForm.resx">
+      <DependentUpon>Relation_SociauxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepertoireForm.resx">
+      <DependentUpon>RepertoireForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reunionForm.resx">
+      <DependentUpon>reunionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="showForm.resx">
+      <DependentUpon>showForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="GestionRHDataSet.xsc">
+      <DependentUpon>GestionRHDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GestionRHDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GestionRHDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GestionRHDataSet.xss">
+      <DependentUpon>GestionRHDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hqdefault %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LoginKey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\centre.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Centre5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Centre3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Centre4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Centre41.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\centreaaa.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asistencia.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\KGlinkserv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database1.sdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\kg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

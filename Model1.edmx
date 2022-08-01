@@ -1,0 +1,791 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GestionRHModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="GestionRHModelStoreContainer">
+          <EntitySet Name="Absence" EntityType="GestionRHModel.Store.Absence" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Citations" EntityType="GestionRHModel.Store.Citations" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Congé" EntityType="GestionRHModel.Store.Congé" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Departement" EntityType="GestionRHModel.Store.Departement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Personnel" EntityType="GestionRHModel.Store.Personnel" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Projet" EntityType="GestionRHModel.Store.Projet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Recrutement" EntityType="GestionRHModel.Store.Recrutement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Relations_Sociaux" EntityType="GestionRHModel.Store.Relations_Sociaux" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="repertoirtel" EntityType="GestionRHModel.Store.repertoirtel" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="reunion" EntityType="GestionRHModel.Store.reunion" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="script" EntityType="GestionRHModel.Store.script" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="script_attestation" EntityType="GestionRHModel.Store.script_attestation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="script_p" EntityType="GestionRHModel.Store.script_p" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Virement" EntityType="GestionRHModel.Store.Virement" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Virement__id_per__30F848ED" Association="GestionRHModel.Store.FK__Virement__id_per__30F848ED">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="Virement" EntitySet="Virement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Absence_Personnel" Association="GestionRHModel.Store.FK_Absence_Personnel">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="Absence" EntitySet="Absence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Congé_Personnel" Association="GestionRHModel.Store.FK_Congé_Personnel">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="Congé" EntitySet="Congé" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personnel_Departement" Association="GestionRHModel.Store.FK_Personnel_Departement">
+            <End Role="Departement" EntitySet="Departement" />
+            <End Role="Personnel" EntitySet="Personnel" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Absence">
+          <Key>
+            <PropertyRef Name="ID_absence" />
+          </Key>
+          <Property Name="ID_absence" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Date_debut_abs" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_fin_abs" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_Personnel" Type="int" />
+          <Property Name="Raison" Type="nvarchar" MaxLength="100" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="valide" Type="bit" />
+          <Property Name="vu" Type="bit" />
+        </EntityType>
+        <EntityType Name="Citations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="text" Type="nvarchar(max)" />
+          <Property Name="date_publication" Type="nvarchar(max)" />
+          <Property Name="valide" Type="bit" />
+          <Property Name="id_pers" Type="int" />
+          <Property Name="img" Type="varbinary(max)" />
+          <Property Name="Nom" Type="nvarchar(max)" />
+          <Property Name="envoye_a" Type="int" />
+        </EntityType>
+        <EntityType Name="Congé">
+          <Key>
+            <PropertyRef Name="ID_congé" />
+          </Key>
+          <Property Name="ID_congé" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Date_demande" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_debut" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_fin" Type="nvarchar" MaxLength="50" />
+          <Property Name="Raison" Type="nvarchar" MaxLength="150" />
+          <Property Name="Validation" Type="varchar" MaxLength="100" />
+          <Property Name="commentaire" Type="nvarchar" MaxLength="150" />
+          <Property Name="ID_personnnel" Type="int" />
+          <Property Name="Vu" Type="bit" />
+          <Property Name="nom" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Departement">
+          <Key>
+            <PropertyRef Name="ID_depart" />
+          </Key>
+          <Property Name="ID_depart" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code_depart" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nom_depart" Type="varchar" MaxLength="50" />
+          <Property Name="ID_Prj" Type="int" />
+          <Property Name="valide" Type="bit" />
+        </EntityType>
+        <EntityType Name="Personnel">
+          <Key>
+            <PropertyRef Name="ID_pers" />
+          </Key>
+          <Property Name="ID_pers" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CIN_pers" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nom_pers" Type="varchar" MaxLength="50" />
+          <Property Name="Prenom_pers" Type="varchar" MaxLength="50" />
+          <Property Name="Date_naissance" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="50" />
+          <Property Name="E_mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type_formation" Type="varchar" MaxLength="50" />
+          <Property Name="Formateur_Centre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Durée_formation" Type="int" />
+          <Property Name="Niv_etude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Diplome_obtenu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fonction" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_embauche" Type="nvarchar" MaxLength="50" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_departement" Type="int" />
+          <Property Name="sexe" Type="varchar" MaxLength="10" />
+          <Property Name="Valide" Type="bit" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="img" Type="varbinary(max)" />
+          <Property Name="conecter" Type="bit" />
+          <Property Name="img_chem" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Projet">
+          <Key>
+            <PropertyRef Name="ID_projet" />
+          </Key>
+          <Property Name="ID_projet" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code_Projet" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nom_Projet" Type="varchar" MaxLength="50" />
+          <Property Name="Prime_Projet" Type="float" />
+          <Property Name="valide" Type="bit" />
+        </EntityType>
+        <EntityType Name="Recrutement">
+          <Key>
+            <PropertyRef Name="ID_Candidat" />
+          </Key>
+          <Property Name="ID_Candidat" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CIN_Candidat" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nom_Candidat" Type="varchar" MaxLength="50" />
+          <Property Name="Prenom_Candidat" Type="varchar" MaxLength="50" />
+          <Property Name="Date_Naissance" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code_postal" Type="int" />
+          <Property Name="Numero_Passport" Type="nvarchar" MaxLength="50" />
+          <Property Name="E_mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Niv_etd" Type="nvarchar" MaxLength="50" />
+          <Property Name="Diplome_obtenu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Note_test" Type="nvarchar" MaxLength="10" />
+          <Property Name="Commentaire" Type="nvarchar" MaxLength="100" />
+          <Property Name="valide" Type="bit" />
+          <Property Name="Français" Type="nvarchar" MaxLength="5" />
+          <Property Name="Anglais" Type="nvarchar" MaxLength="5" />
+          <Property Name="daterecrutement" Type="varchar" MaxLength="50" />
+          <Property Name="Tel" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Relations_Sociaux">
+          <Key>
+            <PropertyRef Name="ID_entreprise" />
+          </Key>
+          <Property Name="ID_entreprise" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Code_Entreprise" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nom_Entreprise" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_debut_convention" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date_fin_convention" Type="nvarchar" MaxLength="50" />
+          <Property Name="Produit" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remise" Type="float" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Valide" Type="bit" />
+        </EntityType>
+        <EntityType Name="repertoirtel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="nvarchar(max)" />
+          <Property Name="numerotel" Type="nvarchar(max)" />
+          <Property Name="commentaire" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="reunion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="datereunion" Type="nvarchar(max)" />
+          <Property Name="raison" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="script">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="script_html" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="script_attestation">
+          <Key>
+            <PropertyRef Name="champ_per" />
+          </Key>
+          <Property Name="champ_per" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="replace_per" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="script_p">
+          <Key>
+            <PropertyRef Name="champ_per" />
+          </Key>
+          <Property Name="champ_per" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="replace_per" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Virement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_personnel" Type="int" />
+          <Property Name="nom" Type="nvarchar(max)" />
+          <Property Name="Salaire" Type="float" />
+          <Property Name="Commentair" Type="nvarchar(max)" />
+          <Property Name="date_effectue" Type="nvarchar(max)" />
+          <Property Name="valide" Type="bit" />
+        </EntityType>
+        <Association Name="FK__Virement__id_per__30F848ED">
+          <End Role="Personnel" Type="GestionRHModel.Store.Personnel" Multiplicity="0..1" />
+          <End Role="Virement" Type="GestionRHModel.Store.Virement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="ID_pers" />
+            </Principal>
+            <Dependent Role="Virement">
+              <PropertyRef Name="id_personnel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Absence_Personnel">
+          <End Role="Personnel" Type="GestionRHModel.Store.Personnel" Multiplicity="0..1" />
+          <End Role="Absence" Type="GestionRHModel.Store.Absence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="ID_pers" />
+            </Principal>
+            <Dependent Role="Absence">
+              <PropertyRef Name="ID_Personnel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Congé_Personnel">
+          <End Role="Personnel" Type="GestionRHModel.Store.Personnel" Multiplicity="0..1" />
+          <End Role="Congé" Type="GestionRHModel.Store.Congé" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="ID_pers" />
+            </Principal>
+            <Dependent Role="Congé">
+              <PropertyRef Name="ID_personnnel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personnel_Departement">
+          <End Role="Departement" Type="GestionRHModel.Store.Departement" Multiplicity="0..1" />
+          <End Role="Personnel" Type="GestionRHModel.Store.Personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departement">
+              <PropertyRef Name="ID_depart" />
+            </Principal>
+            <Dependent Role="Personnel">
+              <PropertyRef Name="ID_departement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestionRHModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="GestionRHEntities7" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Absence" EntityType="GestionRHModel.Absence" />
+          <EntitySet Name="Citations" EntityType="GestionRHModel.Citations" />
+          <EntitySet Name="Congé" EntityType="GestionRHModel.Congé" />
+          <EntitySet Name="Departement" EntityType="GestionRHModel.Departement" />
+          <EntitySet Name="Personnel" EntityType="GestionRHModel.Personnel" />
+          <EntitySet Name="Projet" EntityType="GestionRHModel.Projet" />
+          <EntitySet Name="Recrutement" EntityType="GestionRHModel.Recrutement" />
+          <EntitySet Name="Relations_Sociaux" EntityType="GestionRHModel.Relations_Sociaux" />
+          <AssociationSet Name="FK_Absence_Personnel" Association="GestionRHModel.FK_Absence_Personnel">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="Absence" EntitySet="Absence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Congé_Personnel" Association="GestionRHModel.FK_Congé_Personnel">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="Congé" EntitySet="Congé" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personnel_Departement" Association="GestionRHModel.FK_Personnel_Departement">
+            <End Role="Departement" EntitySet="Departement" />
+            <End Role="Personnel" EntitySet="Personnel" />
+          </AssociationSet>
+          <EntitySet Name="reunion" EntityType="GestionRHModel.reunion" />
+          <EntitySet Name="repertoirtel" EntityType="GestionRHModel.repertoirtel" />
+          <EntitySet Name="Virement" EntityType="GestionRHModel.Virement" />
+          <AssociationSet Name="FK__Virement__id_per__30F848ED" Association="GestionRHModel.FK__Virement__id_per__30F848ED">
+            <End Role="Personnel" EntitySet="Personnel" />
+            <End Role="Virement" EntitySet="Virement" />
+          </AssociationSet>
+          <EntitySet Name="script" EntityType="GestionRHModel.script" />
+          <EntitySet Name="script_p" EntityType="GestionRHModel.script_p" />
+          <EntitySet Name="script_attestation" EntityType="GestionRHModel.script_attestation" />
+        </EntityContainer>
+        <EntityType Name="Absence">
+          <Key>
+            <PropertyRef Name="ID_absence" />
+          </Key>
+          <Property Name="ID_absence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date_debut_abs" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Date_fin_abs" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ID_Personnel" Type="Int32" />
+          <Property Name="Raison" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="valide" Type="Boolean" />
+          <Property Name="vu" Type="Boolean" />
+          <NavigationProperty Name="Personnel" Relationship="GestionRHModel.FK_Absence_Personnel" FromRole="Absence" ToRole="Personnel" />
+        </EntityType>
+        <EntityType Name="Citations">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="text" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="date_publication" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="valide" Type="Boolean" />
+          <Property Name="id_pers" Type="Int32" />
+          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Nom" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="envoye_a" />
+        </EntityType>
+        <EntityType Name="Congé">
+          <Key>
+            <PropertyRef Name="ID_congé" />
+          </Key>
+          <Property Name="ID_congé" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date_demande" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Date_debut" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Date_fin" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Raison" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Validation" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="commentaire" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ID_personnnel" Type="Int32" />
+          <Property Name="Vu" Type="Boolean" />
+          <NavigationProperty Name="Personnel" Relationship="GestionRHModel.FK_Congé_Personnel" FromRole="Congé" ToRole="Personnel" />
+          <Property Type="String" Name="nom" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Departement">
+          <Key>
+            <PropertyRef Name="ID_depart" />
+          </Key>
+          <Property Name="ID_depart" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_depart" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Nom_depart" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ID_Prj" Type="Int32" />
+          <Property Name="valide" Type="Boolean" />
+          <NavigationProperty Name="Personnel" Relationship="GestionRHModel.FK_Personnel_Departement" FromRole="Departement" ToRole="Personnel" />
+        </EntityType>
+        <EntityType Name="Personnel">
+          <Key>
+            <PropertyRef Name="ID_pers" />
+          </Key>
+          <Property Name="ID_pers" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CIN_pers" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Nom_pers" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Prenom_pers" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Date_naissance" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Adresse" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Tel" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="E_mail" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Type_formation" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Formateur_Centre" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Durée_formation" Type="Int32" />
+          <Property Name="Niv_etude" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Diplome_obtenu" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Fonction" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Date_embauche" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Login" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Pass" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ID_departement" Type="Int32" />
+          <Property Name="sexe" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="Valide" Type="Boolean" />
+          <Property Name="Role" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="img" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Absence" Relationship="GestionRHModel.FK_Absence_Personnel" FromRole="Personnel" ToRole="Absence" />
+          <NavigationProperty Name="Congé" Relationship="GestionRHModel.FK_Congé_Personnel" FromRole="Personnel" ToRole="Congé" />
+          <NavigationProperty Name="Departement" Relationship="GestionRHModel.FK_Personnel_Departement" FromRole="Personnel" ToRole="Departement" />
+          <Property Type="Boolean" Name="conecter" />
+          <NavigationProperty Name="Virement" Relationship="GestionRHModel.FK__Virement__id_per__30F848ED" FromRole="Personnel" ToRole="Virement" />
+          <Property Type="String" Name="img_chem" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Projet">
+          <Key>
+            <PropertyRef Name="ID_projet" />
+          </Key>
+          <Property Name="ID_projet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_Projet" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Nom_Projet" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Prime_Projet" Type="Double" />
+          <Property Name="valide" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Recrutement">
+          <Key>
+            <PropertyRef Name="ID_Candidat" />
+          </Key>
+          <Property Name="ID_Candidat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CIN_Candidat" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Nom_Candidat" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Prenom_Candidat" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Date_Naissance" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Adresse" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Ville" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Code_postal" Type="Int32" />
+          <Property Name="Numero_Passport" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="E_mail" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Niv_etd" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Diplome_obtenu" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Note_test" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="valide" Type="Boolean" />
+          <Property Name="Français" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="Anglais" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="daterecrutement" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Tel" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Relations_Sociaux">
+          <Key>
+            <PropertyRef Name="ID_entreprise" />
+          </Key>
+          <Property Name="ID_entreprise" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code_Entreprise" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Nom_Entreprise" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Date_debut_convention" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Date_fin_convention" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Produit" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Remise" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Valide" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Absence_Personnel">
+          <End Role="Personnel" Type="GestionRHModel.Personnel" Multiplicity="0..1" />
+          <End Role="Absence" Type="GestionRHModel.Absence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="ID_pers" />
+            </Principal>
+            <Dependent Role="Absence">
+              <PropertyRef Name="ID_Personnel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Congé_Personnel">
+          <End Role="Personnel" Type="GestionRHModel.Personnel" Multiplicity="0..1" />
+          <End Role="Congé" Type="GestionRHModel.Congé" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="ID_pers" />
+            </Principal>
+            <Dependent Role="Congé">
+              <PropertyRef Name="ID_personnnel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personnel_Departement">
+          <End Role="Departement" Type="GestionRHModel.Departement" Multiplicity="0..1" />
+          <End Role="Personnel" Type="GestionRHModel.Personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departement">
+              <PropertyRef Name="ID_depart" />
+            </Principal>
+            <Dependent Role="Personnel">
+              <PropertyRef Name="ID_departement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="reunion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="datereunion" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="raison" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="repertoirtel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nom" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="numerotel" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="commentaire" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="email" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Virement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="id_personnel" />
+          <Property Type="String" Name="nom" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="Salaire" />
+          <Property Type="String" Name="Commentair" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Personnel" Relationship="GestionRHModel.FK__Virement__id_per__30F848ED" FromRole="Virement" ToRole="Personnel" />
+          <Property Type="String" Name="date_effectue" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="valide" />
+        </EntityType>
+        <Association Name="FK__Virement__id_per__30F848ED">
+          <End Type="GestionRHModel.Personnel" Role="Personnel" Multiplicity="0..1" />
+          <End Type="GestionRHModel.Virement" Role="Virement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnel">
+              <PropertyRef Name="ID_pers" />
+            </Principal>
+            <Dependent Role="Virement">
+              <PropertyRef Name="id_personnel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="script">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="script_html" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="script_p">
+          <Key>
+            <PropertyRef Name="champ_per" />
+          </Key>
+          <Property Type="String" Name="champ_per" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="replace_per" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="script_attestation">
+          <Key>
+            <PropertyRef Name="champ_per" />
+          </Key>
+          <Property Type="String" Name="champ_per" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="replace_per" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestionRHModelStoreContainer" CdmEntityContainer="GestionRHEntities7">
+          <EntitySetMapping Name="Absence">
+            <EntityTypeMapping TypeName="GestionRHModel.Absence">
+              <MappingFragment StoreEntitySet="Absence">
+                <ScalarProperty Name="ID_absence" ColumnName="ID_absence" />
+                <ScalarProperty Name="Date_debut_abs" ColumnName="Date_debut_abs" />
+                <ScalarProperty Name="Date_fin_abs" ColumnName="Date_fin_abs" />
+                <ScalarProperty Name="ID_Personnel" ColumnName="ID_Personnel" />
+                <ScalarProperty Name="Raison" ColumnName="Raison" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="valide" ColumnName="valide" />
+                <ScalarProperty Name="vu" ColumnName="vu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Citations">
+            <EntityTypeMapping TypeName="GestionRHModel.Citations">
+              <MappingFragment StoreEntitySet="Citations">
+                <ScalarProperty Name="envoye_a" ColumnName="envoye_a" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="date_publication" ColumnName="date_publication" />
+                <ScalarProperty Name="valide" ColumnName="valide" />
+                <ScalarProperty Name="id_pers" ColumnName="id_pers" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Congé">
+            <EntityTypeMapping TypeName="GestionRHModel.Congé">
+              <MappingFragment StoreEntitySet="Congé">
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="ID_congé" ColumnName="ID_congé" />
+                <ScalarProperty Name="Date_demande" ColumnName="Date_demande" />
+                <ScalarProperty Name="Date_debut" ColumnName="Date_debut" />
+                <ScalarProperty Name="Date_fin" ColumnName="Date_fin" />
+                <ScalarProperty Name="Raison" ColumnName="Raison" />
+                <ScalarProperty Name="Validation" ColumnName="Validation" />
+                <ScalarProperty Name="commentaire" ColumnName="commentaire" />
+                <ScalarProperty Name="ID_personnnel" ColumnName="ID_personnnel" />
+                <ScalarProperty Name="Vu" ColumnName="Vu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departement">
+            <EntityTypeMapping TypeName="GestionRHModel.Departement">
+              <MappingFragment StoreEntitySet="Departement">
+                <ScalarProperty Name="ID_depart" ColumnName="ID_depart" />
+                <ScalarProperty Name="Code_depart" ColumnName="Code_depart" />
+                <ScalarProperty Name="Nom_depart" ColumnName="Nom_depart" />
+                <ScalarProperty Name="ID_Prj" ColumnName="ID_Prj" />
+                <ScalarProperty Name="valide" ColumnName="valide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personnel">
+            <EntityTypeMapping TypeName="GestionRHModel.Personnel">
+              <MappingFragment StoreEntitySet="Personnel">
+                <ScalarProperty Name="img_chem" ColumnName="img_chem" />
+                <ScalarProperty Name="conecter" ColumnName="conecter" />
+                <ScalarProperty Name="ID_pers" ColumnName="ID_pers" />
+                <ScalarProperty Name="CIN_pers" ColumnName="CIN_pers" />
+                <ScalarProperty Name="Nom_pers" ColumnName="Nom_pers" />
+                <ScalarProperty Name="Prenom_pers" ColumnName="Prenom_pers" />
+                <ScalarProperty Name="Date_naissance" ColumnName="Date_naissance" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="E_mail" ColumnName="E_mail" />
+                <ScalarProperty Name="Type_formation" ColumnName="Type_formation" />
+                <ScalarProperty Name="Formateur_Centre" ColumnName="Formateur_Centre" />
+                <ScalarProperty Name="Durée_formation" ColumnName="Durée_formation" />
+                <ScalarProperty Name="Niv_etude" ColumnName="Niv_etude" />
+                <ScalarProperty Name="Diplome_obtenu" ColumnName="Diplome_obtenu" />
+                <ScalarProperty Name="Fonction" ColumnName="Fonction" />
+                <ScalarProperty Name="Date_embauche" ColumnName="Date_embauche" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="ID_departement" ColumnName="ID_departement" />
+                <ScalarProperty Name="sexe" ColumnName="sexe" />
+                <ScalarProperty Name="Valide" ColumnName="Valide" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projet">
+            <EntityTypeMapping TypeName="GestionRHModel.Projet">
+              <MappingFragment StoreEntitySet="Projet">
+                <ScalarProperty Name="ID_projet" ColumnName="ID_projet" />
+                <ScalarProperty Name="Code_Projet" ColumnName="Code_Projet" />
+                <ScalarProperty Name="Nom_Projet" ColumnName="Nom_Projet" />
+                <ScalarProperty Name="Prime_Projet" ColumnName="Prime_Projet" />
+                <ScalarProperty Name="valide" ColumnName="valide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recrutement">
+            <EntityTypeMapping TypeName="GestionRHModel.Recrutement">
+              <MappingFragment StoreEntitySet="Recrutement">
+                <ScalarProperty Name="ID_Candidat" ColumnName="ID_Candidat" />
+                <ScalarProperty Name="CIN_Candidat" ColumnName="CIN_Candidat" />
+                <ScalarProperty Name="Nom_Candidat" ColumnName="Nom_Candidat" />
+                <ScalarProperty Name="Prenom_Candidat" ColumnName="Prenom_Candidat" />
+                <ScalarProperty Name="Date_Naissance" ColumnName="Date_Naissance" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Code_postal" ColumnName="Code_postal" />
+                <ScalarProperty Name="Numero_Passport" ColumnName="Numero_Passport" />
+                <ScalarProperty Name="E_mail" ColumnName="E_mail" />
+                <ScalarProperty Name="Niv_etd" ColumnName="Niv_etd" />
+                <ScalarProperty Name="Diplome_obtenu" ColumnName="Diplome_obtenu" />
+                <ScalarProperty Name="Note_test" ColumnName="Note_test" />
+                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+                <ScalarProperty Name="valide" ColumnName="valide" />
+                <ScalarProperty Name="Français" ColumnName="Français" />
+                <ScalarProperty Name="Anglais" ColumnName="Anglais" />
+                <ScalarProperty Name="daterecrutement" ColumnName="daterecrutement" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Relations_Sociaux">
+            <EntityTypeMapping TypeName="GestionRHModel.Relations_Sociaux">
+              <MappingFragment StoreEntitySet="Relations_Sociaux">
+                <ScalarProperty Name="ID_entreprise" ColumnName="ID_entreprise" />
+                <ScalarProperty Name="Code_Entreprise" ColumnName="Code_Entreprise" />
+                <ScalarProperty Name="Nom_Entreprise" ColumnName="Nom_Entreprise" />
+                <ScalarProperty Name="Date_debut_convention" ColumnName="Date_debut_convention" />
+                <ScalarProperty Name="Date_fin_convention" ColumnName="Date_fin_convention" />
+                <ScalarProperty Name="Produit" ColumnName="Produit" />
+                <ScalarProperty Name="Remise" ColumnName="Remise" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Valide" ColumnName="Valide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reunion">
+            <EntityTypeMapping TypeName="GestionRHModel.reunion">
+              <MappingFragment StoreEntitySet="reunion">
+                <ScalarProperty Name="raison" ColumnName="raison" />
+                <ScalarProperty Name="datereunion" ColumnName="datereunion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="repertoirtel">
+            <EntityTypeMapping TypeName="GestionRHModel.repertoirtel">
+              <MappingFragment StoreEntitySet="repertoirtel">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="commentaire" ColumnName="commentaire" />
+                <ScalarProperty Name="numerotel" ColumnName="numerotel" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Virement">
+            <EntityTypeMapping TypeName="GestionRHModel.Virement">
+              <MappingFragment StoreEntitySet="Virement">
+                <ScalarProperty Name="valide" ColumnName="valide" />
+                <ScalarProperty Name="date_effectue" ColumnName="date_effectue" />
+                <ScalarProperty Name="Commentair" ColumnName="Commentair" />
+                <ScalarProperty Name="Salaire" ColumnName="Salaire" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="id_personnel" ColumnName="id_personnel" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="script">
+            <EntityTypeMapping TypeName="GestionRHModel.script">
+              <MappingFragment StoreEntitySet="script">
+                <ScalarProperty Name="script_html" ColumnName="script_html" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="script_p">
+            <EntityTypeMapping TypeName="GestionRHModel.script_p">
+              <MappingFragment StoreEntitySet="script_p">
+                <ScalarProperty Name="replace_per" ColumnName="replace_per" />
+                <ScalarProperty Name="champ_per" ColumnName="champ_per" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="script_attestation">
+            <EntityTypeMapping TypeName="GestionRHModel.script_attestation">
+              <MappingFragment StoreEntitySet="script_attestation">
+                <ScalarProperty Name="replace_per" ColumnName="replace_per" />
+                <ScalarProperty Name="champ_per" ColumnName="champ_per" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1" ZoomLevel="59">
+        <EntityTypeShape EntityType="GestionRHModel.Absence" Width="1.5" PointX="4.625" PointY="0.5" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionRHModel.Citations" Width="1.5" PointX="6.375" PointY="0.625" Height="2.5571907552083331" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionRHModel.Congé" Width="1.5" PointX="4.5" PointY="3.5" Height="3.1340950520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionRHModel.Departement" Width="1.5" PointX="0.5" PointY="0.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionRHModel.Personnel" Width="1.5" PointX="2.5" PointY="0.5" Height="6.4032194010416656" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionRHModel.Projet" Width="1.5" PointX="6.375" PointY="3.375" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionRHModel.Recrutement" Width="1.5" PointX="8.125" PointY="0.625" Height="4.6725065104166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionRHModel.Relations_Sociaux" Width="1.5" PointX="10" PointY="4" Height="2.7494921874999996" IsExpanded="true" />
+        <AssociationConnector Association="GestionRHModel.FK_Absence_Personnel" ManuallyRouted="false">
+          <ConnectorPoint PointX="4" PointY="1.8747460937499998" />
+          <ConnectorPoint PointX="4.625" PointY="1.8747460937499998" />
+        </AssociationConnector>
+        <AssociationConnector Association="GestionRHModel.FK_Congé_Personnel" ManuallyRouted="false">
+          <ConnectorPoint PointX="4" PointY="5.0670475260416659" />
+          <ConnectorPoint PointX="4.5" PointY="5.0670475260416659" />
+        </AssociationConnector>
+        <AssociationConnector Association="GestionRHModel.FK_Personnel_Departement" ManuallyRouted="false">
+          <ConnectorPoint PointX="2" PointY="1.5862939453124998" />
+          <ConnectorPoint PointX="2.5" PointY="1.5862939453124998" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="GestionRHModel.reunion" Width="1.5" PointX="8.25" PointY="5.5" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="GestionRHModel.repertoirtel" Width="1.5" PointX="6.375" PointY="5.5" Height="1.9802864583333326" />
+        <EntityTypeShape EntityType="GestionRHModel.Virement" Width="1.5" PointX="0.5" PointY="2.875" Height="2.5571907552083317" />
+        <AssociationConnector Association="GestionRHModel.FK__Virement__id_per__30F848ED" >
+          <ConnectorPoint PointX="2.5" PointY="4.1535953776041659" />
+          <ConnectorPoint PointX="2" PointY="4.1535953776041659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="GestionRHModel.script" Width="1.5" PointX="10" PointY="2.25" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="GestionRHModel.script_p" Width="1.5" PointX="9.875" PointY="0.625" Height="1.4033821614583388" />
+        <EntityTypeShape EntityType="GestionRHModel.script_attestation" Width="1.5" PointX="0.5" PointY="5.625" Height="1.4033821614583388" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
